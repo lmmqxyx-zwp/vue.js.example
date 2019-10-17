@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <div id="app">
+            <button @click="change">修改</button>
+            <blogpost v-for='post in posts' :key='post.id' :post='post.post'></blogpost>
+        </div>
+    </body>
+    <script src="../vue.js"></script>
+    <script>
+        
+        Vue.component('blogpost', {
+            props: {
+                post: Object
+            },
+            template: '<div class="blog-post"><h3>{{ post.title }}</h3><div v-html="post.content"></div></div>'
+        })
+        
+        var app = new Vue({
+            el:'#app',
+            data: {
+                posts: [
+                    {id: 1, post: {title: 'xxx1', content: 'xxxyyyccc1'}},
+                    {id: 2, post: {title: 'xxx2', content: 'xxxyyyccc2'}},
+                    {id: 3, post: {title: 'xxx3', content: 'xxxyyyccc3'}},
+                    {id: 4, post: {title: 'xxx4', content: 'xxxyyyccc4'}}
+                ]
+            },
+            methods: {
+                change() {
+                    // this.posts.push({id: 5, post: {title: 'xxx5', content: 'xxxyyyccc5'})
+                    console.log(this.posts)
+                    let arr = new Array();
+                    this.posts.forEach(function(index) {
+                        console.log(index)
+                        arr.push(index);
+                    })
+                    arr.push({id: 5, post: {title: 'xxx5', content: 'xxxyyyccc5'}})
+                    this.posts = arr;
+                }
+            }
+        })
+        
+        app.$data.posts.push({id: 5, post: {title: 'xxx4', content: 'xxxyyyccc4'}});
+        
+        // console.log(typeof app.$data.posts)
+        
+    </script>
+    <style>
+        .blog-post {
+            background: red;
+        }
+    </style>
+</html>

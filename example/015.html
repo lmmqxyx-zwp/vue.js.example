@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+        <div id="app">
+            <input v-model="username" placeholder="用户名" /> <br />
+            <input v-model="password" placeholder="密码" type="password"/> <br />
+            <button @click="submit()">提交</button>
+            
+            <input
+              v-on:input="searchText = $event.target.value"
+            >
+        </div>
+	</body>
+    <script src="../vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            props: {
+                username: String,
+                password: String
+            },
+            methods: {
+                submit() {
+                    console.log(this.username, this.password);
+                }
+            },
+            data: {
+                searchText: ''
+            }
+        })
+    </script>
+</html>

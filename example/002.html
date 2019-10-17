@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+        <div id='app'>
+            {{ html }}
+            <span v-html="html"></span>
+            <span :id="id" :style="style">{{html}}</span>
+            <span v-bind:id="id" :style="style" @click="c">{{html}}</span>
+        </div>
+	</body>
+    <script src="../vue.js"></script>
+    
+    <script>
+        
+        var app = new Vue({
+            el : '#app',
+            data : {
+                html : '<span>xxx</span>',
+                id: 'span',
+                style: 'color: red; font-size: 100px'
+            },
+            watch: {
+                html(a, b, c) {
+                    this.html = 111;
+                    console.log(a, b, c);
+                    console.log(arguments);
+                    this.html = a;
+                }
+            },
+            props: {
+                p1: Number,
+                p2: Object,
+                p3: String
+            },
+            methods: {
+                c() {
+                    console.log(this.$route)
+                }
+            }
+        });
+        //.$mount('#app');
+        
+        console.log(app);
+        app.html = 'xxx32432';
+    </script>
+</html>

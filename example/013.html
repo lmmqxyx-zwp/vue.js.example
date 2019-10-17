@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <div id="app">
+            <blogpost v-for='post in posts' :key='post.id' :post='post.post'></blogpost>
+        </div>
+    </body>
+    <script src="../vue.js"></script>
+    <script>
+        
+        import blogpost from '/vue-components/blogpost.vue';
+        
+        var app = new Vue({
+            el:'#app',
+            data: {
+                posts: [
+                    {id: 1, post: {title: 'xxx1', content: 'xxxyyyccc1'}},
+                    {id: 2, post: {title: 'xxx2', content: 'xxxyyyccc2'}},
+                    {id: 3, post: {title: 'xxx3', content: 'xxxyyyccc3'}},
+                    {id: 4, post: {title: 'xxx4', content: 'xxxyyyccc4'}}
+                ]
+            },
+            components: {
+                blogpost
+            }
+        })
+    </script>
+    <style>
+        .blog-post {
+            background: red;
+        }
+    </style>
+</html>

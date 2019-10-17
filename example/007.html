@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <div id="app">
+            <div :class="classObject">
+                xxx
+            </div>
+        </div>
+    </body>
+    <script src="../vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                isActive: true,
+                error: {
+                    type: 'fatal'
+                }
+            },
+            computed: {
+                classObject: function() {
+                    return {
+                        'active': this.isActive ,
+                        'text-danger': this.error && this.error.type === 'fatal'
+                    }
+                }
+            }
+        })
+    </script>
+</html>

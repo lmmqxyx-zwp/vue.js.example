@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+        <div id="app">
+            <vue-button title1='@111 '></vue-button>
+            <vue-button></vue-button>
+            <vue-button></vue-button>
+            <vue-button2></vue-button2>
+        </div>
+	</body>
+    <script src="../vue.js"></script>
+    <script>
+        
+        // 创建一个组件
+        Vue.component('vue-button', {
+            template:'<button v-on:click="count++">{{ title1 }}You clicked me {{ count }} times.</button>',
+            data() {
+                return {
+                    count: 0
+                }
+            },
+            props:{
+                title1: String
+            }
+        });
+        
+        console.log(Vue.component('vue-button'));
+        
+        // 从Vue中获取到组件
+        var func = Vue.component('vue-button');
+        
+        // 发现组件是一个函数
+        if(typeof func == 'function') {
+            console.log('vue component is function');
+            
+            console.log(func);
+        }
+        
+        // 组成一个新的组件
+        Vue.component('vue-button2', func);
+        
+        var app = new Vue({
+            el:'#app'
+        })
+    </script>
+</html>

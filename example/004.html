@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <!-- 计算属性 -->
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+        <div id="app">
+            <p>message => {{ message }}</p>
+            <p>计算属性：{{ computed_ }}</p>
+            <button @click="_1()">{{ btn }}</button>
+            <button @click="_3()">{{ btn }}</button>
+            
+            <p>{{ _2() }}</p>
+        </div>
+	</body>
+    <script src="../vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data: {
+                message: 'hello',
+                btn: '修改message的值',
+            },
+            computed: {
+                computed_: function() {
+                    return this._2();
+                }
+            },
+            methods: {
+                _1() {
+                    this.message += Math.random();
+                },
+                _2() {
+                    return this.message.split('').reverse().join('');
+                },
+                _3() {
+                    this.message += Math.random();
+                }
+            }
+        });
+        
+        app.message += '啊   ok  我试一下';
+    </script>
+</html>

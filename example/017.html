@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+        <div id="app">
+            <alert-box>
+              Something bad happened. {{ message }} {{ computedMessage }}
+            </alert-box>
+        </div>
+	</body>
+    <script src="../vue.js"></script>
+    <script>
+        Vue.component('alert-box', {
+          template: `
+            <div class="demo-alert-box">
+              <strong>Error!</strong>
+              <slot></slot>
+            </div>
+          `,
+        })
+        
+        var app = new Vue({
+            el:'#app',
+            props: {
+                message: {
+                    type: Number,
+                    default: 0
+                }
+            },
+            computed: {
+                computedMessage() {
+                    return this.message + Math.random();
+                }
+            }
+        })
+    </script>
+</html>

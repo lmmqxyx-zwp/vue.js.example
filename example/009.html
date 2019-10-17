@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!-- 组件全局注册了 -->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+        <div id="app">
+            {{ message }}
+            <span v-on:click="error">捕获错误</span>
+            <input type="text" @keydown.f1="k_method">
+        </div>
+	</body>
+    
+    <script src="../vue.js"></script>
+    <script type="text/javascript">
+        // Vue.config.silent = true;
+        Vue.config.errorHandler = function(err, vm, info) {
+            debugger
+            console.log('on error handler')
+        }
+        
+        console.log(Vue.config)
+        
+        Vue.config.keyCodes = {
+          v: 86,
+          f1: 112,
+          // camelCase 不可用
+          mediaPlayPause: 179,
+          // 取而代之的是 kebab-case 且用双引号括起来
+          "media-play-pause": 179,
+          up: [38, 87]
+        }
+        
+        console.log(Vue.config.keyCodes)
+
+        // Vue.config.productionTip = false;
+        
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'message'
+            },
+            methods: {
+                error() {
+                    console.log(10/0);
+                    throw 'new Exception(xxx);'
+                },
+                k_method() {
+                    console.log(arguments)
+                }
+            }
+        })
+    </script>
+</html>
