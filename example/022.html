@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<div v-bind:class="classObject">xxx</div>
+			<div v-bind:class="[isActive ? activeClass : errorClass, errorClass]"></div>
+		</div>
+	</body>
+	<script src="../vue.js"></script>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				isActive: true,
+				error: {
+					type: 'fatal'
+				},
+				activeClass: 'a',
+				errorClass: 'b'
+			},
+			computed: {
+				classObject: function() {
+					return {
+						active: this.isActive && !this.error,
+						'text-danger': this.error && this.error.type === 'fatal'
+					}
+				}
+			}
+		})
+	</script>
+</html>
