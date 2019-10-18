@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+        <div id="app">
+            <my-component 
+            v-for='(item, index) in items' 
+            :item='item'
+            :key='item.id'
+            :index='index'
+            :a='index'
+            ></my-component>
+        </div>
+	</body>
+    <script src="../vue.js"></script>
+    <script>
+        Vue.component('my-component', {
+            props: {
+                item: {
+                    type: Object,
+                    default: null
+                },
+                index: Number
+            },
+            template: `<div>{{ item }} {{ index }}</div>`
+        })
+        
+        var app = new Vue({
+            el:'#app',
+            data: {
+                items: [
+                    {id: 1, item: {name: 'zwp', age: 26}}
+                ]
+            }
+        })
+    </script>
+</html>

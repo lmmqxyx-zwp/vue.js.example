@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+        <div id="app">
+            <ul>
+                <li v-for="(o, k) in object">
+                    {{ o }} - {{  k}}
+                </li>
+            </ul>
+            
+            <ul>
+              <template v-for="n in 10">
+                <li>{{ n }}</li>
+                <li class="divider" role="presentation">{{n + 10}}</li>
+              </template>
+            </ul>
+        </div>
+	</body>
+    <script src="../vue.js"></script>
+    <script>
+        
+        
+        var app = new Vue({
+            el:'#app',
+            data: {
+                object: {
+                  title: 'How to do lists in Vue',
+                  author: 'Jane Doe',
+                  publishedAt: '2016-04-10'
+                }
+              }
+        })
+    </script>
+</html>

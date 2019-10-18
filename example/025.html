@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <!-- 用key管理可复用的元素-->
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+        <div id="app">
+            <vkey :yy='loginType'></vkey>
+            <ttt :login-type='l'></ttt>
+            <!-- <button type="button" @click="loginType === 'username" ? loginType = 'email' : loginType = 'username'></button> -->
+        </div>
+	</body>
+    <script src="../vue.js"></script>
+    <script>
+        Vue.component('vkey', {
+            props: {
+                yy: String
+            },
+            template:`<div><template v-if="yy === 'username'">
+                          <label>Username</label>
+                          <input placeholder="Enter your username">
+                        </template>
+                        <template v-else>
+                          <label>Email111</label>
+                          <input placeholder="Enter your email address">
+                        </template></div>`
+        })
+        
+        Vue.component('ttt', {
+            props: {
+                loginType: String
+            },
+            template:`<div v-if="loginType === 'username'"><label>Username</label><input placeholder="Enter your username"></div><div v-else><label>Email111</label><input placeholder="Enter your email address"></div>`
+        })
+        
+        var app = new Vue({
+            el:'#app',
+            data:{
+                l: 'username',
+                loginType: 'username'
+            },
+            mounted() {
+                console.log('1111', this.l)
+            }
+        })
+    </script>
+</html>

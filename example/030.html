@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+        <div id="app">
+            <!-- 组合键-->
+            <input type="text" v-model="k1" v-on:keydown.13.ctrl='k11' />
+            <input type="text" v-model="k2" v-on:keydown.enter='k22();' />
+        </div>
+	</body>
+    <script src="../vue.js"></script>
+    <script>
+        
+        
+        var app = new Vue({
+            el:'#app',
+            data: {
+                k1: '',
+                k2: ''
+            },
+            methods: {
+                k11() {
+                    alert(1)
+                },
+                k22() {
+                    alert(2)
+                }
+            }
+        })
+    </script>
+</html>

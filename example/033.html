@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+        <div id="app">
+            <blog-post
+              v-bind:author="{
+                name: 'Veronica',
+                company: 'Veridian Dynamics'
+              }"
+            ></blog-post>
+            
+            <blog-post v-bind:author="post"></blog-post>
+            
+            <base-checkbox @change='change' :checked='checked'></base-checkbox>
+            
+            <base-checkbox v-model="lovingVue"></base-checkbox>
+        </div>
+	</body>
+    <script src="../vue.js"></script>
+    <script>
+        Vue.component('blog-post', {
+            props:{
+                author: Object
+            },
+            mounted() {
+                console.log(this.author)
+            },
+            template: '<p>aaa</p>'
+        })
+        
+        Vue.component('base-checkbox', {
+          model: {
+            prop: 'checked',
+            event: 'change'
+          },
+          props: {
+            checked: Boolean
+          },
+          template: `
+            <input
+              type="checkbox"
+              v-bind:checked="checked"
+              v-on:change.prevent="$emit('change', $event.target.checked, $event)"
+            >
+          `
+        })
+        
+        var app = new Vue({
+            el:'#app',
+            data: {
+                post: {
+                    name: 'Veronica',
+                    company: 'Veridian Dynamics'
+                },
+                lovingVue: false,
+                checked: false
+            },
+            methods: {
+                change(k, event) {
+                    console.log(k)
+                    if(event) {
+                        console.log(event)
+                        event.preventDefault();
+                    }
+                    if(k) {
+                        this.checked = !k;
+                    }
+                    this.checked = k;
+                }
+            }
+        })
+        
+        var promise = new Promise(function (resolve, reject) {
+            var a = 2
+            if (a == 1) {
+                resolve(a)
+            } else {
+                reject(error)
+            }
+        })
+        promise.then(function (value) {
+            console.log(value);
+        }).catch(function (error) {
+            console.log(error);
+        })
+    </script>
+</html>

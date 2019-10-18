@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+        <div id="app">
+            <form v-on:submit.prevent="add">
+                <label>添加todo</label>
+                <input type="text" v-model="todoContent" />
+                <button>确认</button>
+            </form>
+            
+            <ul>
+                <todo-item 
+                v-for='(item,index) in todos' 
+                :key='item.id'
+                :item= 'item'
+                @remove='todos.splice(index, 1)'
+                ></todo-item>
+            </ul>
+            
+            <p>=============</p>
+            防止DOM解析错误的做法 ul li
+            <ul>
+                <li
+                is='todo-item'
+                v-for='(item,index) in todos' 
+                :key='item.id'
+                :item= 'item'
+                @remove='todos.splice(index, 1)'
+                ></li>
+            </ul>
+        </div>
+	</body>
+    <script src="../vue.js"></script>
+    <script>
+        Vue.component('todo-item', {
+            props: {
+                item: {
+                    type: Object
+                }
+            },
+            methods: {
+                remove(o) {
+                    console.log(o)
+                    this.$emit('remove', o)
+                }
+            },
+            template: `
+                    <li :id='item.id'>{{ item.content }} <a href='#' @click='remove(item.id)'>删除</a></li>
+            `
+        })
+        
+        var app = new Vue({
+            el:'#app',
+            data: {
+                todoContent: '',
+                todos: [],
+                next: 0
+            },
+            methods: {
+                add() {
+                    if(this.todoContent.trim() == '') {
+                        alert('不能为空')
+                        return;
+                    }
+                    this.todos.push({id: this.next++, content: this.todoContent});
+                    console.log(this.todos);
+                    // 添加完成后清空
+                    this.todoContent = '';
+                },
+                // remove(id) {
+                //     let t = this.todos;
+                //     let k = [];
+                //     t.forEach(function(todo, index) {
+                //         if(todo.id == id) {
+                //         } else {
+                //             k.push(todo)
+                //         }
+                //     })
+                //     this.todos = k;
+                // }
+            }
+        })
+    </script>
+</html>

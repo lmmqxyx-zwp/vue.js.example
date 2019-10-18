@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+        <div id="app">
+            <!-- class追加 -->
+            <test-a class='k l'></test-a>
+            <!-- ???-->
+            <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">xxx</div>
+        </div>
+	</body>
+    <script src="../vue.js"></script>
+    <script>
+        Vue.component('test-a', {
+            template: '<div class="for bar">xxx</div>'
+        })
+        
+        var app = new Vue({
+            el:'#app',
+            
+        })
+    </script>
+</html>

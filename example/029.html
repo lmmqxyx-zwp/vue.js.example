@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+        <!-- 事件的处理-->
+        <div id="app">
+            <button name="ccvv" type="button" @click="a">xx</button>
+            
+            <button v-on:click="warn('Form cannot be submitted yet.', $event)">
+              Submit
+            </button>
+            <!-- 可以阻止默认行为的发生 跳转-->
+            <a href="http://www.baidu.com" @click="warn('not forword', $event)">baidu</a>
+        </div>
+	</body>
+    <script src="../vue.js"></script>
+    <script>
+        
+        
+        var app = new Vue({
+            el:'#app',
+            methods: {
+                a(event) {
+                    console.log(event)
+                    console.log(event.target.name)
+                    console.log(event.target.tagName)
+                },
+                warn: function (message, event) {
+                    // 现在我们可以访问原生事件对象
+                    if (event) event.preventDefault()
+                    alert(message)
+                  }
+            }
+        })
+    </script>
+</html>
